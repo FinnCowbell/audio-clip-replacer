@@ -2,6 +2,7 @@ import os
 
 class Window: 
     def __init__(self, manager) -> None:
+        self.name = 'DEFAULT_NAME'
         self.manager = manager
         self.lines = []
 
