@@ -1,4 +1,3 @@
-
 class InterfaceManager: 
     def __init__(self):
         self._windowClasses = {}

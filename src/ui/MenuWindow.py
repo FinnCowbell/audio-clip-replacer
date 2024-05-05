@@ -1,10 +1,10 @@
-from ui.PlayWindow import PlayWindow
-from ui.Window import Window
-from ui.parts.ButtonRow import ButtonRow
-from ui.parts.Button import Button
-from getch import getch
+from .PlayWindow import PlayWindow
+from .Window import Window
+from .parts.ButtonRow import ButtonRow
+from .parts.Button import Button
 from keyReader import keyReader
-from ui.consts import window_names
+from const import WINDOW
+
 
 class TextLine: 
     def __init__(self, text):
@@ -19,10 +19,10 @@ class TextLine:
 class MenuWindow (Window):
     def __init__(self, manager) -> None:
         super().__init__(manager)
-        self.name = window_names['MenuWindow']
+        self.name = WINDOW.MAINWINDOW
         self.state = 0
         self.manager = manager
-        manager.addWindowClass(window_names['PlayWindow'], PlayWindow)
+        manager.addWindowClass(WINDOW.PLAYWINDOW, PlayWindow)
         self.lines = [
             TextLine('Welcome to the main menu'),
             TextLine('Please select an option'),
@@ -33,7 +33,7 @@ class MenuWindow (Window):
 
         
     def run(self):
-        self.manager.navigate(window_names['PlayWindow'])
+        self.manager.navigate(WINDOW.PLAYWINDOW)
         
     def options(self):
         self.manager.navigate('options')

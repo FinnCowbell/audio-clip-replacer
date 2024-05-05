@@ -2,7 +2,7 @@ import os
 from ui.MenuWindow import MenuWindow
 from ui.InterfaceManager import InterfaceManager
 from ui.PlayWindow import PlayWindow
-from ui.consts import window_names
+from const import WINDOW
 
 DEFAULT_DIR = "./Input/"
 DEFAULT_OUTPUT_DIR = "./Output/"
@@ -20,11 +20,11 @@ class AudioRecorder:
             os.makedirs(DEFAULT_OUTPUT_DIR)
             
     def initWindows(self): 
-        self._interfaceManager.addWindowClass(window_names['MenuWindow'], MenuWindow)
-        self._interfaceManager.addWindowClass(window_names['PlayWindow'], PlayWindow)
+        self._interfaceManager.addWindowClass(WINDOW.MAINWINDOW, MenuWindow)
+        self._interfaceManager.addWindowClass(WINDOW.PLAYWINDOW, PlayWindow)
 
     def run(self):
-        self._interfaceManager.navigate(window_names['MenuWindow'])
+        self._interfaceManager.navigate(WINDOW.MAINWINDOW)
         self._interfaceManager.render()
         
 if __name__ == "__main__":

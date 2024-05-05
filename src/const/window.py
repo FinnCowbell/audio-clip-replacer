@@ -1,0 +1,2 @@
+PLAYWINDOW = "playwindow"
+MAINWINDOW = "mainwindow"
