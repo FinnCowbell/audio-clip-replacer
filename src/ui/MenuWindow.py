@@ -1,20 +1,10 @@
 from .PlayWindow import PlayWindow
 from .Window import Window
-from .parts.ButtonRow import ButtonRow
+from .parts.ButtonLine import ButtonLine
+from .parts.TextLine import TextLine
 from .parts.Button import Button
 from keyReader import keyReader
 from const import WINDOW
-
-
-class TextLine: 
-    def __init__(self, text):
-        self.text = text
-        
-    def draw(self):
-        print(self.text)
-        
-    def process(self):
-        pass
 
 class MenuWindow (Window):
     def __init__(self, manager) -> None:
@@ -23,14 +13,16 @@ class MenuWindow (Window):
         self.state = 0
         self.manager = manager
         manager.addWindowClass(WINDOW.PLAYWINDOW, PlayWindow)
-        self.lines = [
+    
+    @property
+    def lines(self):
+        return [
             TextLine('Welcome to the main menu'),
             TextLine('Please select an option'),
-            ButtonRow([
+            ButtonLine([
             Button('exit', self.exit, 'q'),
             Button('run', self.run, 'x')
             ])]
-
         
     def run(self):
         self.manager.navigate(WINDOW.PLAYWINDOW)
@@ -40,7 +32,13 @@ class MenuWindow (Window):
     
     def draw(self):
         super().draw()
+        
+    def listen(self):
         keyReader.wait()
+        
+    def process(self):
+        for line in self.lines:
+            line.process()
 
     @property
     def navigationButton(self):

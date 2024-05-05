@@ -4,8 +4,11 @@ class Window:
     def __init__(self, manager) -> None:
         self.name = 'DEFAULT_NAME'
         self.manager = manager
-        self.lines = []
-
+        
+    @property
+    def lines(self):
+        return []
+    
     @property
     def width(self):
         return os.get_terminal_size().columns
@@ -15,7 +18,7 @@ class Window:
         return os.get_terminal_size().lines
     
     def clear(self):
-        print('\n' * self.height, end='')
+        os.system('cls')
         
     def exit(self):
         raise SystemExit
@@ -24,6 +27,7 @@ class Window:
         while(manager.getCurrentWindow() == self):
             self.clear()
             self.draw()
+            self.listen()
             self.process()
     
     def draw(self):
@@ -33,8 +37,10 @@ class Window:
             self.lines[line].draw()
     
     def process(self):
-        for line in self.lines:
-            line.process()
+        raise NotImplementedError
+            
+    def listen(self):
+        raise NotImplementedError
     
     @property
     def navigationButton(self):

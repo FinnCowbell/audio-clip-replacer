@@ -4,10 +4,10 @@ from ui.InterfaceManager import InterfaceManager
 from ui.PlayWindow import PlayWindow
 from const import WINDOW
 
-DEFAULT_DIR = "./Input/"
-DEFAULT_OUTPUT_DIR = "./Output/"
+DEFAULT_DIR = "../Input/"
+DEFAULT_OUTPUT_DIR = "../Output/"
 
-class AudioRecorder:
+class AudioClipReplacer:
     def __init__(self):
         self.initDirectories()
         self._interfaceManager = InterfaceManager()
@@ -28,5 +28,5 @@ class AudioRecorder:
         self._interfaceManager.render()
         
 if __name__ == "__main__":
-    app = AudioRecorder()
+    app = AudioClipReplacer()
     app.run()
